@@ -571,18 +571,18 @@ const renderGraph = () => {
   const link = linkGroup.selectAll('path')
     .data(edges)
     .enter().append('path')
-    .attr('stroke', '#C0C0C0')
+    .attr('stroke', 'var(--glass-border)')
     .attr('stroke-width', 1.5)
     .attr('fill', 'none')
     .style('cursor', 'pointer')
     .on('click', (event, d) => {
       event.stopPropagation()
       // 重置之前选中边的样式
-      linkGroup.selectAll('path').attr('stroke', '#C0C0C0').attr('stroke-width', 1.5)
-      linkLabelBg.attr('fill', 'rgba(255,255,255,0.95)')
-      linkLabels.attr('fill', '#666')
+      linkGroup.selectAll('path').attr('stroke', 'var(--glass-border)').attr('stroke-width', 1.5)
+      linkLabelBg.attr('fill', 'var(--bg-color)')
+      linkLabels.attr('fill', 'var(--fg-color)')
       // 高亮当前选中的边
-      d3.select(event.target).attr('stroke', '#3498db').attr('stroke-width', 3)
+      d3.select(event.target).attr('stroke', 'var(--accent-color)').attr('stroke-width', 3)
       
       selectedItem.value = {
         type: 'edge',
@@ -594,7 +594,7 @@ const renderGraph = () => {
   const linkLabelBg = linkGroup.selectAll('rect')
     .data(edges)
     .enter().append('rect')
-    .attr('fill', 'rgba(255,255,255,0.95)')
+    .attr('fill', 'var(--bg-color)')
     .attr('rx', 3)
     .attr('ry', 3)
     .style('cursor', 'pointer')
@@ -602,12 +602,12 @@ const renderGraph = () => {
     .style('display', showEdgeLabels.value ? 'block' : 'none')
     .on('click', (event, d) => {
       event.stopPropagation()
-      linkGroup.selectAll('path').attr('stroke', '#C0C0C0').attr('stroke-width', 1.5)
-      linkLabelBg.attr('fill', 'rgba(255,255,255,0.95)')
-      linkLabels.attr('fill', '#666')
+      linkGroup.selectAll('path').attr('stroke', 'var(--glass-border)').attr('stroke-width', 1.5)
+      linkLabelBg.attr('fill', 'var(--bg-color)')
+      linkLabels.attr('fill', 'var(--fg-color)')
       // 高亮对应的边
-      link.filter(l => l === d).attr('stroke', '#3498db').attr('stroke-width', 3)
-      d3.select(event.target).attr('fill', 'rgba(52, 152, 219, 0.1)')
+      link.filter(l => l === d).attr('stroke', 'var(--accent-color)').attr('stroke-width', 3)
+      d3.select(event.target).attr('fill', 'var(--glass-bg)')
       
       selectedItem.value = {
         type: 'edge',
@@ -621,7 +621,7 @@ const renderGraph = () => {
     .enter().append('text')
     .text(d => d.name)
     .attr('font-size', '9px')
-    .attr('fill', '#666')
+    .attr('fill', 'var(--fg-color)')
     .attr('text-anchor', 'middle')
     .attr('dominant-baseline', 'middle')
     .style('cursor', 'pointer')
@@ -630,12 +630,12 @@ const renderGraph = () => {
     .style('display', showEdgeLabels.value ? 'block' : 'none')
     .on('click', (event, d) => {
       event.stopPropagation()
-      linkGroup.selectAll('path').attr('stroke', '#C0C0C0').attr('stroke-width', 1.5)
-      linkLabelBg.attr('fill', 'rgba(255,255,255,0.95)')
-      linkLabels.attr('fill', '#666')
+      linkGroup.selectAll('path').attr('stroke', 'var(--glass-border)').attr('stroke-width', 1.5)
+      linkLabelBg.attr('fill', 'var(--bg-color)')
+      linkLabels.attr('fill', 'var(--fg-color)')
       // 高亮对应的边
-      link.filter(l => l === d).attr('stroke', '#3498db').attr('stroke-width', 3)
-      d3.select(event.target).attr('fill', '#3498db')
+      link.filter(l => l === d).attr('stroke', 'var(--accent-color)').attr('stroke-width', 3)
+      d3.select(event.target).attr('fill', 'var(--accent-color)')
       
       selectedItem.value = {
         type: 'edge',
@@ -656,7 +656,7 @@ const renderGraph = () => {
     .enter().append('circle')
     .attr('r', 10)
     .attr('fill', d => getColor(d.type))
-    .attr('stroke', '#fff')
+    .attr('stroke', 'var(--bg-color)')
     .attr('stroke-width', 2.5)
     .style('cursor', 'pointer')
     .call(d3.drag()
@@ -698,13 +698,13 @@ const renderGraph = () => {
     .on('click', (event, d) => {
       event.stopPropagation()
       // 重置所有节点样式
-      node.attr('stroke', '#fff').attr('stroke-width', 2.5)
-      linkGroup.selectAll('path').attr('stroke', '#C0C0C0').attr('stroke-width', 1.5)
+      node.attr('stroke', 'var(--bg-color)').attr('stroke-width', 2.5)
+      linkGroup.selectAll('path').attr('stroke', 'var(--glass-border)').attr('stroke-width', 1.5)
       // 高亮选中节点
-      d3.select(event.target).attr('stroke', '#E91E63').attr('stroke-width', 4)
+      d3.select(event.target).attr('stroke', 'var(--accent-color)').attr('stroke-width', 4)
       // 高亮与此节点相连的边
       link.filter(l => l.source.id === d.id || l.target.id === d.id)
-        .attr('stroke', '#E91E63')
+        .attr('stroke', 'var(--accent-color)')
         .attr('stroke-width', 2.5)
       
       selectedItem.value = {
@@ -716,12 +716,12 @@ const renderGraph = () => {
     })
     .on('mouseenter', (event, d) => {
       if (!selectedItem.value || selectedItem.value.data?.uuid !== d.rawData.uuid) {
-        d3.select(event.target).attr('stroke', '#333').attr('stroke-width', 3)
+        d3.select(event.target).attr('stroke', 'var(--fg-color)').attr('stroke-width', 3)
       }
     })
     .on('mouseleave', (event, d) => {
       if (!selectedItem.value || selectedItem.value.data?.uuid !== d.rawData.uuid) {
-        d3.select(event.target).attr('stroke', '#fff').attr('stroke-width', 2.5)
+        d3.select(event.target).attr('stroke', 'var(--bg-color)').attr('stroke-width', 2.5)
       }
     })
 
@@ -731,7 +731,7 @@ const renderGraph = () => {
     .enter().append('text')
     .text(d => d.name.length > 8 ? d.name.substring(0, 8) + '…' : d.name)
     .attr('font-size', '11px')
-    .attr('fill', '#333')
+    .attr('fill', 'var(--fg-color)')
     .attr('font-weight', '500')
     .attr('dx', 14)
     .attr('dy', 4)
@@ -776,10 +776,10 @@ const renderGraph = () => {
   // 点击空白处关闭详情面板
   svg.on('click', () => {
     selectedItem.value = null
-    node.attr('stroke', '#fff').attr('stroke-width', 2.5)
-    linkGroup.selectAll('path').attr('stroke', '#C0C0C0').attr('stroke-width', 1.5)
-    linkLabelBg.attr('fill', 'rgba(255,255,255,0.95)')
-    linkLabels.attr('fill', '#666')
+    node.attr('stroke', 'var(--bg-color)').attr('stroke-width', 2.5)
+    linkGroup.selectAll('path').attr('stroke', 'var(--glass-border)').attr('stroke-width', 1.5)
+    linkLabelBg.attr('fill', 'var(--bg-color)')
+    linkLabels.attr('fill', 'var(--fg-color)')
   })
 }
 
@@ -818,7 +818,8 @@ onUnmounted(() => {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: #FAFAFA;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(10px);
   background-image: radial-gradient(#D0D0D0 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   overflow: hidden;
@@ -841,7 +842,7 @@ onUnmounted(() => {
 .panel-title {
   font-size: 14px;
   font-weight: 600;
-  color: #333;
+  color: var(--fg-color);
   pointer-events: auto;
 }
 
@@ -856,22 +857,24 @@ onUnmounted(() => {
   height: 32px;
   padding: 0 12px;
   border: 1px solid #E0E0E0;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   cursor: pointer;
-  color: #666;
+  color: var(--fg-color);
   transition: all 0.2s;
   box-shadow: 0 2px 4px rgba(0,0,0,0.02);
   font-size: 13px;
 }
 
 .tool-btn:hover {
-  background: #F5F5F5;
-  color: #000;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--fg-color);
   border-color: #CCC;
 }
 
@@ -968,7 +971,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 8px 14px;
   border-radius: 20px;
   border: 1px solid #E0E0E0;
@@ -996,7 +1000,8 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #E0E0E0;
+  background-color: var(--glass-border);
+  backdrop-filter: blur(10px);
   border-radius: 22px;
   transition: 0.3s;
 }
@@ -1008,7 +1013,8 @@ onUnmounted(() => {
   width: 16px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 50%;
   transition: 0.3s;
 }
@@ -1023,7 +1029,7 @@ input:checked + .slider:before {
 
 .toggle-label {
   font-size: 12px;
-  color: #666;
+  color: var(--fg-color);
 }
 
 /* Detail Panel - Right Side */
@@ -1033,7 +1039,8 @@ input:checked + .slider:before {
   right: 20px;
   width: 320px;
   max-height: calc(100% - 100px);
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #EAEAEA;
   border-radius: 10px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
@@ -1050,14 +1057,15 @@ input:checked + .slider:before {
   justify-content: space-between;
   align-items: center;
   padding: 14px 16px;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid #EEE;
   flex-shrink: 0;
 }
 
 .detail-title {
   font-weight: 600;
-  color: #333;
+  color: var(--fg-color);
   font-size: 14px;
 }
 
@@ -1082,7 +1090,7 @@ input:checked + .slider:before {
 }
 
 .detail-close:hover {
-  color: #333;
+  color: var(--fg-color);
 }
 
 .detail-content {
@@ -1106,7 +1114,7 @@ input:checked + .slider:before {
 }
 
 .detail-value {
-  color: #333;
+  color: var(--fg-color);
   flex: 1;
   word-break: break-word;
 }
@@ -1114,7 +1122,7 @@ input:checked + .slider:before {
 .detail-value.uuid-text {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: #666;
+  color: var(--fg-color);
 }
 
 .detail-value.fact-text {
@@ -1131,7 +1139,7 @@ input:checked + .slider:before {
 .section-title {
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: var(--fg-color);
   margin-bottom: 10px;
 }
 
@@ -1153,7 +1161,7 @@ input:checked + .slider:before {
 }
 
 .property-value {
-  color: #333;
+  color: var(--fg-color);
   flex: 1;
 }
 
@@ -1172,7 +1180,8 @@ input:checked + .slider:before {
 .label-tag {
   display: inline-block;
   padding: 4px 12px;
-  background: #F5F5F5;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E0E0E0;
   border-radius: 16px;
   font-size: 11px;
@@ -1188,24 +1197,26 @@ input:checked + .slider:before {
 .episode-tag {
   display: inline-block;
   padding: 6px 10px;
-  background: #F8F8F8;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E8E8E8;
   border-radius: 6px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
-  color: #666;
+  color: var(--fg-color);
   word-break: break-all;
 }
 
 /* Edge relation header */
 .edge-relation-header {
-  background: #F8F8F8;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 16px;
   font-size: 13px;
   font-weight: 500;
-  color: #333;
+  color: var(--fg-color);
   line-height: 1.5;
   word-break: break-word;
 }
@@ -1317,7 +1328,7 @@ input:checked + .slider:before {
 .self-loop-count {
   margin-left: auto;
   font-size: 11px;
-  color: #666;
+  color: var(--fg-color);
   background: rgba(255,255,255,0.8);
   padding: 2px 8px;
   border-radius: 10px;
@@ -1330,7 +1341,8 @@ input:checked + .slider:before {
 }
 
 .self-loop-item {
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #EAEAEA;
   border-radius: 8px;
 }
@@ -1340,7 +1352,8 @@ input:checked + .slider:before {
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
-  background: #F5F5F5;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -1357,7 +1370,8 @@ input:checked + .slider:before {
   font-size: 10px;
   font-weight: 600;
   color: #888;
-  background: #E0E0E0;
+  background: var(--glass-border);
+  backdrop-filter: blur(10px);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -1365,7 +1379,7 @@ input:checked + .slider:before {
 .self-loop-name {
   font-size: 12px;
   font-weight: 500;
-  color: #333;
+  color: var(--fg-color);
   flex: 1;
 }
 
@@ -1378,14 +1392,15 @@ input:checked + .slider:before {
   font-size: 14px;
   font-weight: 600;
   color: #888;
-  background: #E0E0E0;
+  background: var(--glass-border);
+  backdrop-filter: blur(10px);
   border-radius: 4px;
   transition: all 0.2s;
 }
 
 .self-loop-item.expanded .self-loop-toggle {
   background: #D0D0D0;
-  color: #666;
+  color: var(--fg-color);
 }
 
 .self-loop-item-content {

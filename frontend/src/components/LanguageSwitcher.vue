@@ -69,7 +69,7 @@ onUnmounted(() => {
 /* Light theme (default - for white header backgrounds) */
 .switcher-trigger {
   background: transparent;
-  color: #333;
+  color: var(--fg-color);
   border: 1px solid #CCC;
   padding: 4px 12px;
   font-family: 'JetBrains Mono', monospace;
@@ -94,7 +94,8 @@ onUnmounted(() => {
   top: 100%;
   right: 0;
   margin-top: 4px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #DDD;
   list-style: none;
   padding: 4px 0;
@@ -106,7 +107,7 @@ onUnmounted(() => {
 .switcher-option {
   padding: 6px 12px;
   font-size: 0.8rem;
-  color: #333;
+  color: var(--fg-color);
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.15s;
@@ -117,7 +118,7 @@ onUnmounted(() => {
 }
 
 .switcher-option.active {
-  color: var(--orange, #FF4500);
+  color: var(--orange, var(--accent-color));
 }
 
 

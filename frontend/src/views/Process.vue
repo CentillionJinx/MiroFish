@@ -1093,10 +1093,11 @@ onUnmounted(() => {
 <style scoped>
 /* 变量 */
 :root {
-  --black: #000000;
-  --white: #FFFFFF;
+  --black: var(--bg-color);
+  --white: var(--glass-bg);
+  backdrop-filter: blur(10px);
   --orange: #FF6B35;
-  --gray-light: #F5F5F5;
+  --gray-light: var(--glass-border);
   --gray-border: #E0E0E0;
   --gray-text: #666666;
 }
@@ -1209,7 +1210,8 @@ onUnmounted(() => {
   flex-direction: column;
   border-right: 1px solid #E0E0E0;
   transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  background: #fff;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   z-index: 5;
 }
 
@@ -1224,7 +1226,8 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 12px 24px;
   border-bottom: 1px solid #E0E0E0;
-  background: #fff;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   height: 50px;
 }
 
@@ -1250,7 +1253,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 16px;
   font-size: 0.75rem;
-  color: #666;
+  color: var(--fg-color);
 }
 
 .stat-item {
@@ -1261,7 +1264,7 @@ onUnmounted(() => {
 
 .stat-val {
   font-weight: 600;
-  color: #333;
+  color: var(--fg-color);
 }
 
 .stat-divider {
@@ -1284,13 +1287,14 @@ onUnmounted(() => {
   border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.2s;
-  color: #666;
+  color: var(--fg-color);
   border-radius: 2px;
 }
 
 .action-btn:hover:not(:disabled) {
-  background: #F5F5F5;
-  color: #000;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--fg-color);
 }
 
 .action-btn:disabled {
@@ -1345,7 +1349,7 @@ onUnmounted(() => {
 .loading-ring:nth-child(1) {
   width: 80px;
   height: 80px;
-  border-top-color: #000;
+  border-top-color: var(--fg-color);
 }
 
 .loading-ring:nth-child(2) {
@@ -1362,7 +1366,7 @@ onUnmounted(() => {
   height: 40px;
   top: 20px;
   left: 20px;
-  border-bottom-color: #666;
+  border-bottom-color: var(--fg-color);
   animation-delay: 0.4s;
 }
 
@@ -1373,7 +1377,7 @@ onUnmounted(() => {
 .loading-text,
 .waiting-text {
   font-size: 0.9rem;
-  color: #333;
+  color: var(--fg-color);
   margin: 0 0 8px;
 }
 
@@ -1434,7 +1438,8 @@ onUnmounted(() => {
   right: 16px;
   width: 320px;
   max-height: calc(100% - 32px);
-  background: #fff;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E0E0E0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -1448,14 +1453,15 @@ onUnmounted(() => {
   align-items: center;
   gap: 10px;
   padding: 12px 16px;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid #E0E0E0;
 }
 
 .detail-title {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
+  color: var(--fg-color);
 }
 
 .detail-badge {
@@ -1481,7 +1487,7 @@ onUnmounted(() => {
 }
 
 .detail-close:hover {
-  color: #333;
+  color: var(--fg-color);
 }
 
 .detail-content {
@@ -1505,14 +1511,14 @@ onUnmounted(() => {
 
 .detail-value {
   font-size: 0.85rem;
-  color: #333;
+  color: var(--fg-color);
   word-break: break-word;
 }
 
 .detail-value.uuid {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
-  color: #666;
+  color: var(--fg-color);
 }
 
 .detail-section {
@@ -1522,10 +1528,11 @@ onUnmounted(() => {
 .detail-summary {
   margin: 8px 0 0 0;
   font-size: 0.85rem;
-  color: #333;
+  color: var(--fg-color);
   line-height: 1.6;
   padding: 10px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-left: 3px solid #FF6B35;
 }
 
@@ -1540,7 +1547,7 @@ onUnmounted(() => {
   font-size: 0.75rem;
   background: #F0F0F0;
   border: 1px solid #E0E0E0;
-  color: #666;
+  color: var(--fg-color);
 }
 
 /* 边详情关系展示 */
@@ -1551,7 +1558,8 @@ onUnmounted(() => {
   gap: 8px;
   margin-bottom: 16px;
   padding: 12px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E0E0E0;
 }
 
@@ -1559,7 +1567,7 @@ onUnmounted(() => {
 .edge-target {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #333;
+  color: var(--fg-color);
 }
 
 .edge-arrow {
@@ -1575,13 +1583,13 @@ onUnmounted(() => {
 
 .detail-value.highlight {
   font-weight: 600;
-  color: #000;
+  color: var(--fg-color);
 }
 
 .detail-subtitle {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
+  color: var(--fg-color);
   margin: 16px 0 12px 0;
   padding-bottom: 8px;
   border-bottom: 1px solid #E0E0E0;
@@ -1591,7 +1599,8 @@ onUnmounted(() => {
 .properties-list {
   margin-top: 8px;
   padding: 10px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E0E0E0;
 }
 
@@ -1606,13 +1615,13 @@ onUnmounted(() => {
 }
 
 .property-key {
-  color: #666;
+  color: var(--fg-color);
   margin-right: 8px;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .property-value {
-  color: #333;
+  color: var(--fg-color);
   word-break: break-word;
 }
 
@@ -1631,7 +1640,7 @@ onUnmounted(() => {
   font-family: 'JetBrains Mono', monospace;
   background: #F0F0F0;
   border: 1px solid #E0E0E0;
-  color: #666;
+  color: var(--fg-color);
   word-break: break-all;
 }
 
@@ -1648,7 +1657,8 @@ onUnmounted(() => {
   gap: 16px;
   padding: 12px 24px;
   border-top: 1px solid #E0E0E0;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .legend-item {
@@ -1665,7 +1675,7 @@ onUnmounted(() => {
 }
 
 .legend-label {
-  color: #333;
+  color: var(--fg-color);
 }
 
 .legend-count {
@@ -1678,7 +1688,8 @@ onUnmounted(() => {
   flex: none;
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, transform 0.3s ease;
   overflow: hidden;
   opacity: 1;
@@ -1735,7 +1746,8 @@ onUnmounted(() => {
   align-items: flex-start;
   gap: 16px;
   padding: 16px;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid #E0E0E0;
 }
 
@@ -1781,8 +1793,9 @@ onUnmounted(() => {
 .phase-status {
   font-size: 0.75rem;
   padding: 4px 10px;
-  background: #eee;
-  color: #666;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--fg-color);
 }
 
 .phase-status.active {
@@ -1810,9 +1823,10 @@ onUnmounted(() => {
 .entity-tag {
   font-size: 0.75rem;
   padding: 4px 10px;
-  background: #F5F5F5;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E0E0E0;
-  color: #333;
+  color: var(--fg-color);
 }
 
 /* 关系列表 */
@@ -1834,7 +1848,7 @@ onUnmounted(() => {
 
 .rel-source,
 .rel-target {
-  color: #333;
+  color: var(--fg-color);
 }
 
 .rel-arrow {
@@ -1873,13 +1887,14 @@ onUnmounted(() => {
 
 .progress-text {
   font-size: 0.85rem;
-  color: #333;
+  color: var(--fg-color);
 }
 
 /* 等待状态 */
 .waiting-state {
   padding: 16px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px dashed #E0E0E0;
   text-align: center;
 }
@@ -1892,7 +1907,8 @@ onUnmounted(() => {
 /* 进度条 */
 .progress-bar {
   height: 6px;
-  background: #E0E0E0;
+  background: var(--glass-border);
+  backdrop-filter: blur(10px);
   margin-bottom: 8px;
   overflow: hidden;
 }
@@ -1910,7 +1926,7 @@ onUnmounted(() => {
 }
 
 .progress-message {
-  color: #666;
+  color: var(--fg-color);
 }
 
 .progress-percent {
@@ -1928,14 +1944,15 @@ onUnmounted(() => {
   flex: 1;
   text-align: center;
   padding: 12px;
-  background: #F5F5F5;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .result-value {
   display: block;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #000;
+  color: var(--fg-color);
   margin-bottom: 4px;
 }
 
@@ -1986,7 +2003,8 @@ onUnmounted(() => {
 /* 项目信息面板 */
 .project-panel {
   border-top: 1px solid #E0E0E0;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .project-header {
@@ -2029,7 +2047,7 @@ onUnmounted(() => {
 }
 
 .item-value {
-  color: #333;
+  color: var(--fg-color);
   text-align: right;
   max-width: 60%;
   word-break: break-all;
@@ -2038,7 +2056,7 @@ onUnmounted(() => {
 .item-value.code {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
-  color: #666;
+  color: var(--fg-color);
 }
 
 /* 响应式 */
