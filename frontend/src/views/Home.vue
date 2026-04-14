@@ -42,10 +42,7 @@
         </div>
         
         <div class="hero-right">
-          <!-- Logo 区域 -->
-          <div class="logo-container">
-            <img src="../assets/logo/MiroFish_logo_left.jpeg" alt="MiroFish Logo" class="hero-logo" />
-          </div>
+          <!-- Removed Logo for dark mode -->
           
           <button class="scroll-down-btn" @click="scrollToBottom">
             ↓
@@ -681,7 +678,7 @@ const startSimulation = () => {
 }
 
 .console-box {
-  border: 1px solid #CCC; /* 外部实线 */
+  border: 1px solid var(--glass-border); /* 外部实线 */
   padding: 8px; /* 内边距形成双重边框感 */
 }
 
@@ -807,7 +804,7 @@ const startSimulation = () => {
 
 .input-wrapper {
   position: relative;
-  border: 1px solid #DDD;
+  border: 1px solid var(--glass-border);
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
 }
@@ -823,6 +820,7 @@ const startSimulation = () => {
   resize: vertical;
   outline: none;
   min-height: 150px;
+  color: var(--fg-color);
 }
 
 .model-badge {
