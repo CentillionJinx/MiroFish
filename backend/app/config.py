@@ -21,7 +21,7 @@ class Config:
     """Flask配置类"""
     
     # Flask配置
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'mirofish-secret-key')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     DEBUG = os.environ.get('FLASK_DEBUG', 'True').lower() == 'true'
     
     # JSON配置 - 禁用ASCII转义，让中文直接显示（而不是 \uXXXX 格式）
@@ -67,6 +67,8 @@ class Config:
     def validate(cls):
         """验证必要配置"""
         errors = []
+        if not cls.SECRET_KEY:
+            errors.append("SECRET_KEY 未配置 (用于Flask会话安全)")
         if not cls.LLM_API_KEY:
             errors.append("LLM_API_KEY 未配置")
         if not cls.ZEP_API_KEY:
