@@ -375,7 +375,7 @@
                   <path d="M16.24 7.76L14.12 14.12L7.76 16.24L9.88 9.88L16.24 7.76Z" fill="url(#paint0_linear)" stroke="url(#paint0_linear)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   <defs>
                     <linearGradient id="paint0_linear" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#FF5722"/>
+                      <stop stop-color="var(--accent-color)"/>
                       <stop offset="1" stop-color="#FF9800"/>
                     </linearGradient>
                   </defs>
@@ -1088,7 +1088,8 @@ onUnmounted(() => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
 }
 
@@ -1103,7 +1104,8 @@ onUnmounted(() => {
 
 /* Step Card */
 .step-card {
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -1113,7 +1115,7 @@ onUnmounted(() => {
 }
 
 .step-card.active {
-  border-color: #FF5722;
+  border-color: var(--accent-color);
   box-shadow: 0 4px 12px rgba(255, 87, 34, 0.08);
 }
 
@@ -1139,7 +1141,7 @@ onUnmounted(() => {
 
 .step-card.active .step-num,
 .step-card.completed .step-num {
-  color: #000;
+  color: var(--fg-color);
 }
 
 .step-title {
@@ -1157,8 +1159,9 @@ onUnmounted(() => {
 }
 
 .badge.success { background: #E8F5E9; color: #2E7D32; }
-.badge.processing { background: #FF5722; color: #FFF; }
-.badge.pending { background: #F5F5F5; color: #999; }
+.badge.processing { background: var(--accent-color); color: #FFF; }
+.badge.pending { background: var(--glass-bg);
+  backdrop-filter: blur(10px); color: #999; }
 .badge.accent { background: #E3F2FD; color: #1565C0; }
 
 .card-content {
@@ -1174,7 +1177,7 @@ onUnmounted(() => {
 
 .description {
   font-size: 12px;
-  color: #666;
+  color: var(--fg-color);
   line-height: 1.5;
   margin-bottom: 16px;
 }
@@ -1207,8 +1210,9 @@ onUnmounted(() => {
 }
 
 .action-btn.secondary {
-  background: #F5F5F5;
-  color: #333;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--fg-color);
 }
 
 .action-btn.secondary:hover:not(:disabled) {
@@ -1237,7 +1241,8 @@ onUnmounted(() => {
 
 /* Info Card */
 .info-card {
-  background: #F5F5F5;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 6px;
   padding: 16px;
   margin-top: 16px;
@@ -1257,7 +1262,7 @@ onUnmounted(() => {
 
 .info-label {
   font-size: 12px;
-  color: #666;
+  color: var(--fg-color);
 }
 
 .info-value {
@@ -1275,7 +1280,8 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 16px;
   border-radius: 6px;
 }
@@ -1288,7 +1294,7 @@ onUnmounted(() => {
   display: block;
   font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: var(--fg-color);
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -1317,7 +1323,7 @@ onUnmounted(() => {
 .preview-title {
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: var(--fg-color);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -1345,7 +1351,8 @@ onUnmounted(() => {
 }
 
 .profile-card {
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E5E5;
   border-radius: 6px;
   padding: 14px;
@@ -1355,7 +1362,8 @@ onUnmounted(() => {
 
 .profile-card:hover {
   border-color: #999;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .profile-header {
@@ -1368,7 +1376,7 @@ onUnmounted(() => {
 .profile-realname {
   font-size: 14px;
   font-weight: 700;
-  color: #000;
+  color: var(--fg-color);
 }
 
 .profile-username {
@@ -1383,7 +1391,7 @@ onUnmounted(() => {
 
 .profile-profession {
   font-size: 11px;
-  color: #666;
+  color: var(--fg-color);
   background: #F0F0F0;
   padding: 2px 8px;
   border-radius: 3px;
@@ -1448,7 +1456,7 @@ onUnmounted(() => {
 .config-block-title {
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: var(--fg-color);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -1470,7 +1478,8 @@ onUnmounted(() => {
 }
 
 .config-item {
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 12px 14px;
   border-radius: 6px;
   display: flex;
@@ -1503,7 +1512,8 @@ onUnmounted(() => {
   align-items: center;
   gap: 12px;
   padding: 8px 12px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 6px;
 }
 
@@ -1555,7 +1565,8 @@ onUnmounted(() => {
 }
 
 .agent-card {
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E5E5;
   border-radius: 6px;
   padding: 14px;
@@ -1564,7 +1575,8 @@ onUnmounted(() => {
 
 .agent-card:hover {
   border-color: #999;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 /* Agent Card Header */
@@ -1748,7 +1760,8 @@ onUnmounted(() => {
 }
 
 .platform-card {
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 14px;
   border-radius: 6px;
 }
@@ -1762,7 +1775,7 @@ onUnmounted(() => {
 .platform-name {
   font-size: 13px;
   font-weight: 600;
-  color: #333;
+  color: var(--fg-color);
 }
 
 .platform-params {
@@ -1798,7 +1811,8 @@ onUnmounted(() => {
 
 .reasoning-item {
   padding: 12px 14px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 6px;
 }
 
@@ -1825,7 +1839,8 @@ onUnmounted(() => {
 }
 
 .profile-modal {
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 16px;
   width: 90%;
   max-width: 600px;
@@ -1841,7 +1856,8 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: flex-start;
   padding: 24px;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid #F0F0F0;
 }
 
@@ -1859,7 +1875,7 @@ onUnmounted(() => {
 .modal-realname {
   font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: var(--fg-color);
 }
 
 .modal-username {
@@ -1870,8 +1886,9 @@ onUnmounted(() => {
 
 .modal-profession {
   font-size: 12px;
-  color: #666;
-  background: #F5F5F5;
+  color: var(--fg-color);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 4px 10px;
   border-radius: 4px;
   display: inline-block;
@@ -1896,7 +1913,7 @@ onUnmounted(() => {
 }
 
 .close-btn:hover {
-  color: #333;
+  color: var(--fg-color);
 }
 
 .modal-body {
@@ -1933,12 +1950,12 @@ onUnmounted(() => {
 .info-value {
   font-size: 15px;
   font-weight: 600;
-  color: #333;
+  color: var(--fg-color);
 }
 
 .info-value.mbti {
   font-family: 'JetBrains Mono', monospace;
-  color: #FF5722;
+  color: var(--accent-color);
 }
 
 /* 模块区域 */
@@ -1958,11 +1975,12 @@ onUnmounted(() => {
 
 .section-bio {
   font-size: 14px;
-  color: #333;
+  color: var(--fg-color);
   line-height: 1.6;
   margin: 0;
   padding: 16px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 6px;
   border-left: 3px solid #E0E0E0;
 }
@@ -2014,7 +2032,7 @@ onUnmounted(() => {
   display: block;
   font-size: 12px;
   font-weight: 700;
-  color: #333;
+  color: var(--fg-color);
   margin-bottom: 4px;
 }
 
@@ -2097,7 +2115,7 @@ onUnmounted(() => {
 }
 
 .log-time {
-  color: #666;
+  color: var(--fg-color);
   min-width: 75px;
 }
 
@@ -2111,7 +2129,7 @@ onUnmounted(() => {
   width: 16px;
   height: 16px;
   border: 2px solid #E5E5E5;
-  border-top-color: #FF5722;
+  border-top-color: var(--accent-color);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -2131,14 +2149,15 @@ onUnmounted(() => {
   display: block;
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: var(--fg-color);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 12px;
 }
 
 .narrative-box {
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 20px 24px;
   border-radius: 12px;
   border: 1px solid #EEF2F6;
@@ -2150,7 +2169,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #666;
+  color: var(--fg-color);
   font-size: 13px;
   letter-spacing: 0.5px;
   margin-bottom: 12px;
@@ -2177,7 +2196,8 @@ onUnmounted(() => {
 }
 
 .topics-section {
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .hot-topics-grid {
@@ -2230,7 +2250,8 @@ onUnmounted(() => {
 }
 
 .timeline-content {
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 12px;
   border-radius: 6px;
   border: 1px solid #EEE;
@@ -2245,7 +2266,7 @@ onUnmounted(() => {
 .post-role {
   font-size: 11px;
   font-weight: 700;
-  color: #333;
+  color: var(--fg-color);
   text-transform: uppercase;
 }
 
@@ -2259,7 +2280,7 @@ onUnmounted(() => {
 .post-username {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
-  color: #666;
+  color: var(--fg-color);
   line-height: 1;
   vertical-align: baseline;
 }
@@ -2351,7 +2372,8 @@ onUnmounted(() => {
   top: 2px;
   width: 16px;
   height: 16px;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -2397,12 +2419,12 @@ onUnmounted(() => {
   font-family: 'JetBrains Mono', monospace;
   font-size: 24px;
   font-weight: 700;
-  color: #000;
+  color: var(--fg-color);
 }
 
 .val-unit {
   font-size: 12px;
-  color: #666;
+  color: var(--fg-color);
   font-weight: 500;
 }
 
@@ -2438,7 +2460,8 @@ onUnmounted(() => {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 2px solid #000;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
@@ -2472,11 +2495,11 @@ onUnmounted(() => {
 }
 
 .mark-recommend:hover {
-  color: #000;
+  color: var(--fg-color);
 }
 
 .mark-recommend.active {
-  color: #000;
+  color: var(--fg-color);
   font-weight: 600;
 }
 
@@ -2531,7 +2554,8 @@ onUnmounted(() => {
   font-size: 11px;
   font-weight: 500;
   color: #64748B;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E2E8F0;
   padding: 3px 8px;
   border-radius: 6px;
@@ -2554,7 +2578,7 @@ onUnmounted(() => {
 .highlight-tip {
   margin-top: 4px !important;
   font-size: 12px !important;
-  color: #000 !important;
+  color: var(--fg-color) !important;
   font-weight: 500;
   cursor: pointer;
 }
