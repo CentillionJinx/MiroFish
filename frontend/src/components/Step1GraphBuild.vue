@@ -275,7 +275,8 @@ watch(() => props.systemLogs.length, () => {
 <style scoped>
 .workbench-panel {
   height: 100%;
-  background-color: #FAFAFA;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -292,7 +293,8 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .step-card {
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -302,7 +304,7 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .step-card.active {
-  border-color: #FF5722;
+  border-color: var(--accent-color);
   box-shadow: 0 4px 12px rgba(255, 87, 34, 0.08);
 }
 
@@ -328,7 +330,7 @@ watch(() => props.systemLogs.length, () => {
 
 .step-card.active .step-num,
 .step-card.completed .step-num {
-  color: #000;
+  color: var(--fg-color);
 }
 
 .step-title {
@@ -346,9 +348,10 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .badge.success { background: #E8F5E9; color: #2E7D32; }
-.badge.processing { background: #FF5722; color: #FFF; }
-.badge.accent { background: #FF5722; color: #FFF; }
-.badge.pending { background: #F5F5F5; color: #999; }
+.badge.processing { background: var(--accent-color); color: #FFF; }
+.badge.accent { background: var(--accent-color); color: #FFF; }
+.badge.pending { background: var(--glass-bg);
+  backdrop-filter: blur(10px); color: #999; }
 
 .api-note {
   font-family: 'JetBrains Mono', monospace;
@@ -359,7 +362,7 @@ watch(() => props.systemLogs.length, () => {
 
 .description {
   font-size: 12px;
-  color: #666;
+  color: var(--fg-color);
   line-height: 1.5;
   margin-bottom: 16px;
 }
@@ -390,12 +393,13 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .entity-tag {
-  background: #F5F5F5;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #EEE;
   padding: 4px 10px;
   border-radius: 4px;
   font-size: 11px;
-  color: #333;
+  color: var(--fg-color);
   font-family: 'JetBrains Mono', monospace;
   transition: all 0.2s;
 }
@@ -405,7 +409,8 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .entity-tag.clickable:hover {
-    background: #E0E0E0;
+    background: var(--glass-border);
+  backdrop-filter: blur(10px);
     border-color: #CCC;
 }
 
@@ -436,7 +441,8 @@ watch(() => props.systemLogs.length, () => {
     align-items: center;
     padding: 12px 16px;
     border-bottom: 1px solid #EAEAEA;
-    background: #FAFAFA;
+    background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .detail-title-group {
@@ -471,7 +477,7 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .close-btn:hover {
-    color: #333;
+    color: var(--fg-color);
 }
 
 .detail-body {
@@ -514,14 +520,15 @@ watch(() => props.systemLogs.length, () => {
     gap: 6px;
     align-items: baseline;
     padding: 4px;
-    background: #F9F9F9;
+    background: var(--glass-bg);
+  backdrop-filter: blur(10px);
     border-radius: 4px;
 }
 
 .attr-name {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 600;
-    color: #000;
+    color: var(--fg-color);
 }
 
 .attr-type {
@@ -543,7 +550,8 @@ watch(() => props.systemLogs.length, () => {
 
 .example-tag {
     font-size: 11px;
-    background: #FFF;
+    background: var(--glass-bg);
+  backdrop-filter: blur(10px);
     border: 1px solid #E0E0E0;
     padding: 3px 8px;
     border-radius: 12px;
@@ -556,14 +564,15 @@ watch(() => props.systemLogs.length, () => {
     gap: 8px;
     font-size: 11px;
     padding: 6px;
-    background: #F5F5F5;
+    background: var(--glass-bg);
+  backdrop-filter: blur(10px);
     border-radius: 4px;
     font-family: 'JetBrains Mono', monospace;
 }
 
 .conn-node {
     font-weight: 600;
-    color: #333;
+    color: var(--fg-color);
 }
 
 .conn-arrow {
@@ -575,7 +584,8 @@ watch(() => props.systemLogs.length, () => {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
-  background: #F9F9F9;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 16px;
   border-radius: 6px;
 }
@@ -588,7 +598,7 @@ watch(() => props.systemLogs.length, () => {
   display: block;
   font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: var(--fg-color);
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -628,7 +638,7 @@ watch(() => props.systemLogs.length, () => {
   align-items: center;
   gap: 10px;
   font-size: 12px;
-  color: #FF5722;
+  color: var(--accent-color);
   margin-bottom: 12px;
 }
 
@@ -636,7 +646,7 @@ watch(() => props.systemLogs.length, () => {
   width: 14px;
   height: 14px;
   border: 2px solid #FFCCBC;
-  border-top-color: #FF5722;
+  border-top-color: var(--accent-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -689,7 +699,7 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .log-time {
-  color: #666;
+  color: var(--fg-color);
   min-width: 75px;
 }
 

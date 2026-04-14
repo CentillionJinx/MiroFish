@@ -223,7 +223,8 @@ onMounted(() => {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   overflow: hidden;
   font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
 }
@@ -236,7 +237,8 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: #FFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   z-index: 100;
   position: relative;
 }
@@ -257,7 +259,8 @@ onMounted(() => {
 
 .view-switcher {
   display: flex;
-  background: #F5F5F5;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   padding: 4px;
   border-radius: 6px;
   gap: 4px;
@@ -269,15 +272,16 @@ onMounted(() => {
   padding: 6px 16px;
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: var(--fg-color);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .switch-btn.active {
-  background: #FFF;
-  color: #000;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--fg-color);
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -302,13 +306,14 @@ onMounted(() => {
 
 .step-name {
   font-weight: 700;
-  color: #000;
+  color: var(--fg-color);
 }
 
 .step-divider {
   width: 1px;
   height: 14px;
-  background-color: #E0E0E0;
+  background-color: var(--glass-border);
+  backdrop-filter: blur(10px);
 }
 
 .status-indicator {
@@ -316,7 +321,7 @@ onMounted(() => {
   align-items: center;
   gap: 8px;
   font-size: 12px;
-  color: #666;
+  color: var(--fg-color);
   font-weight: 500;
 }
 

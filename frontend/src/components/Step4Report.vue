@@ -2230,7 +2230,8 @@ watch(() => props.reportId, (newId) => {
   align-items: center;
   gap: 10px;
   padding: 14px 20px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid #E5E7EB;
   font-size: 13px;
   font-weight: 600;
@@ -2291,7 +2292,8 @@ watch(() => props.reportId, (newId) => {
 
 /* Panel header status variants */
 .panel-header--active {
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-color: #1F2937;
 }
 
@@ -2324,7 +2326,8 @@ watch(() => props.reportId, (newId) => {
 .left-panel.report-style {
   width: 45%;
   min-width: 450px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border-right: 1px solid #E5E7EB;
   overflow-y: auto;
   display: flex;
@@ -2668,7 +2671,8 @@ watch(() => props.reportId, (newId) => {
 /* Right Panel */
 .right-panel {
   flex: 1;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -2796,7 +2800,8 @@ watch(() => props.reportId, (newId) => {
   padding: 10px 12px;
   border: 1px solid var(--wf-divider);
   border-radius: 8px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .wf-step--active {
@@ -2910,7 +2915,8 @@ watch(() => props.reportId, (newId) => {
   margin-bottom: 10px;
   border: 1px solid var(--wf-divider);
   border-radius: 8px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -3309,7 +3315,8 @@ watch(() => props.reportId, (newId) => {
   white-space: pre-wrap;
   word-break: break-word;
   color: #374151;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   padding: 10px;
   border-radius: 6px;
@@ -3478,7 +3485,8 @@ watch(() => props.reportId, (newId) => {
 
 :deep(.stat-box) {
   flex: 1;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-radius: 6px;
   padding: 10px 8px;
@@ -3532,7 +3540,8 @@ watch(() => props.reportId, (newId) => {
 }
 
 :deep(.expand-details) {
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   padding: 8px 14px;
   border-radius: 6px;
@@ -3550,7 +3559,8 @@ watch(() => props.reportId, (newId) => {
 
 :deep(.detail-content) {
   margin-top: 14px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-radius: 8px;
   padding: 14px;
@@ -4117,7 +4127,8 @@ watch(() => props.reportId, (newId) => {
 :deep(.interview-display .quote-item) {
   margin: 0;
   padding: 10px 12px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-radius: 6px;
   font-size: 12px;
@@ -4296,7 +4307,8 @@ watch(() => props.reportId, (newId) => {
   display: flex;
   gap: 2px;
   padding: 8px 12px;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-top: none;
 }
@@ -4322,7 +4334,8 @@ watch(() => props.reportId, (newId) => {
 }
 
 :deep(.insight-tab.active) {
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   color: #7C3AED;
   border-color: #C4B5FD;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -4331,7 +4344,8 @@ watch(() => props.reportId, (newId) => {
 
 :deep(.insight-content) {
   padding: 12px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-top: none;
   border-radius: 0 0 8px 8px;
@@ -4505,7 +4519,8 @@ watch(() => props.reportId, (newId) => {
 :deep(.insight-display .rel-source),
 :deep(.insight-display .rel-target) {
   padding: 4px 8px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #D1D5DB;
   border-radius: 4px;
   font-size: 11px;
@@ -4671,7 +4686,8 @@ watch(() => props.reportId, (newId) => {
   display: flex;
   gap: 2px;
   padding: 8px 12px;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-top: none;
 }
@@ -4697,7 +4713,8 @@ watch(() => props.reportId, (newId) => {
 }
 
 :deep(.panorama-tab.active) {
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   color: #2563EB;
   border-color: #93C5FD;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -4706,7 +4723,8 @@ watch(() => props.reportId, (newId) => {
 
 :deep(.panorama-content) {
   padding: 12px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-top: none;
   border-radius: 0 0 8px 8px;
@@ -4907,7 +4925,8 @@ watch(() => props.reportId, (newId) => {
   display: flex;
   gap: 2px;
   padding: 8px 12px;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-top: none;
 }
@@ -4933,7 +4952,8 @@ watch(() => props.reportId, (newId) => {
 }
 
 :deep(.quicksearch-tab.active) {
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   color: #EA580C;
   border-color: #FDBA74;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -4942,7 +4962,8 @@ watch(() => props.reportId, (newId) => {
 
 :deep(.quicksearch-content) {
   padding: 12px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #E5E7EB;
   border-top: none;
   border-radius: 0 0 8px 8px;
@@ -5040,7 +5061,8 @@ watch(() => props.reportId, (newId) => {
 :deep(.quick-search-display .edge-source),
 :deep(.quick-search-display .edge-target) {
   padding: 4px 8px;
-  background: #FFFFFF;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid #D1D5DB;
   border-radius: 4px;
   font-size: 11px;
@@ -5119,7 +5141,7 @@ watch(() => props.reportId, (newId) => {
   padding-bottom: 8px;
   margin-bottom: 8px;
   font-size: 10px;
-  color: #666;
+  color: var(--fg-color);
 }
 
 .log-title {

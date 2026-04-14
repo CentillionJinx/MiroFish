@@ -7,6 +7,14 @@
 </script>
 
 <style>
+:root {
+  --bg-color: #020202;
+  --fg-color: #dec7f7;
+  --accent-color: #f63b57;
+  --glass-bg: rgba(2, 2, 2, 0.4);
+  --glass-border: rgba(222, 199, 247, 0.2);
+}
+
 /* 全局样式重置 */
 * {
   margin: 0;
@@ -14,12 +22,17 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+}
+
 #app {
   font-family: 'JetBrains Mono', 'Space Grotesk', 'Noto Sans SC', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #000000;
-  background-color: #ffffff;
+  color: var(--fg-color);
+  background-color: var(--bg-color);
 }
 
 /* 滚动条样式 */
@@ -29,15 +42,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: var(--glass-border);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #333333;
+  background: var(--accent-color);
 }
 
 /* 全局按钮样式 */

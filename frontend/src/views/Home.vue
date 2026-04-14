@@ -42,10 +42,7 @@
         </div>
         
         <div class="hero-right">
-          <!-- Logo 区域 -->
-          <div class="logo-container">
-            <img src="../assets/logo/MiroFish_logo_left.jpeg" alt="MiroFish Logo" class="hero-logo" />
-          </div>
+          <!-- Removed Logo for dark mode -->
           
           <button class="scroll-down-btn" @click="scrollToBottom">
             ↓
@@ -212,12 +209,19 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import HistoryDatabase from '../components/HistoryDatabase.vue'
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
+import gsap from 'gsap'
 
 const router = useRouter()
+
+onMounted(() => {
+  gsap.from('.navbar', { duration: 1, y: -50, opacity: 0, ease: 'power3.out' });
+  gsap.from('.hero-left', { duration: 1, x: -50, opacity: 0, delay: 0.2, ease: 'power3.out' });
+  gsap.from('.hero-right', { duration: 1, x: 50, opacity: 0, delay: 0.4, ease: 'power3.out' });
+})
 
 // 表单数据
 const formData = ref({
@@ -314,10 +318,11 @@ const startSimulation = () => {
 <style scoped>
 /* 全局变量与重置 */
 :root {
-  --black: #000000;
-  --white: #FFFFFF;
-  --orange: #FF4500;
-  --gray-light: #F5F5F5;
+  --black: var(--bg-color);
+  --white: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  --orange: var(--accent-color);
+  --gray-light: var(--glass-border);
   --gray-text: #666666;
   --border: #E5E5E5;
   /* 
@@ -673,7 +678,7 @@ const startSimulation = () => {
 }
 
 .console-box {
-  border: 1px solid #CCC; /* 外部实线 */
+  border: 1px solid var(--glass-border); /* 外部实线 */
   padding: 8px; /* 内边距形成双重边框感 */
 }
 
@@ -691,7 +696,7 @@ const startSimulation = () => {
   margin-bottom: 15px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: #666;
+  color: var(--fg-color);
 }
 
 .upload-zone {
@@ -703,7 +708,8 @@ const startSimulation = () => {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s;
-  background: #FAFAFA;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .upload-zone.has-files {
@@ -784,7 +790,8 @@ const startSimulation = () => {
   content: '';
   flex: 1;
   height: 1px;
-  background: #EEE;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .console-divider span {
@@ -797,8 +804,9 @@ const startSimulation = () => {
 
 .input-wrapper {
   position: relative;
-  border: 1px solid #DDD;
-  background: #FAFAFA;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
 }
 
 .code-input {
@@ -812,6 +820,7 @@ const startSimulation = () => {
   resize: vertical;
   outline: none;
   min-height: 150px;
+  color: var(--fg-color);
 }
 
 .model-badge {
