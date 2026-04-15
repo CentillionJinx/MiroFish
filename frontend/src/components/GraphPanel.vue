@@ -820,8 +820,6 @@ onUnmounted(() => {
   height: 100%;
   background-color: var(--glass-bg);
   backdrop-filter: blur(10px);
-  background-image: radial-gradient(#D0D0D0 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
   overflow: hidden;
 }
 
@@ -835,7 +833,7 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
   pointer-events: none;
 }
 
@@ -856,7 +854,7 @@ onUnmounted(() => {
 .tool-btn {
   height: 32px;
   padding: 0 12px;
-  border: 1px solid #E0E0E0;
+  border: 1px solid var(--glass-border);
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   border-radius: 6px;
@@ -875,7 +873,7 @@ onUnmounted(() => {
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   color: var(--fg-color);
-  border-color: #CCC;
+  border-color: var(--fg-color);
 }
 
 .tool-btn .btn-text {
@@ -905,7 +903,7 @@ onUnmounted(() => {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: #999;
+  color: var(--fg-color);
 }
 
 .empty-icon {
@@ -919,10 +917,10 @@ onUnmounted(() => {
   position: absolute;
   bottom: 24px;
   left: 24px;
-  background: rgba(255,255,255,0.95);
+  background: var(--glass-bg);
   padding: 12px 16px;
   border-radius: 8px;
-  border: 1px solid #EAEAEA;
+  border: 1px solid var(--glass-border);
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   z-index: 10;
 }
@@ -931,7 +929,7 @@ onUnmounted(() => {
   display: block;
   font-size: 11px;
   font-weight: 600;
-  color: #E91E63;
+  color: var(--accent-color);
   margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -949,7 +947,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #555;
+  color: var(--fg-color);
 }
 
 .legend-dot {
@@ -975,7 +973,7 @@ onUnmounted(() => {
   backdrop-filter: blur(10px);
   padding: 8px 14px;
   border-radius: 20px;
-  border: 1px solid #E0E0E0;
+  border: 1px solid var(--glass-border);
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   z-index: 10;
 }
@@ -1041,7 +1039,7 @@ input:checked + .slider:before {
   max-height: calc(100% - 100px);
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid #EAEAEA;
+  border: 1px solid var(--glass-border);
   border-radius: 10px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
   overflow: hidden;
@@ -1059,7 +1057,7 @@ input:checked + .slider:before {
   padding: 14px 16px;
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid var(--glass-border);
   flex-shrink: 0;
 }
 
@@ -1083,7 +1081,7 @@ input:checked + .slider:before {
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: #999;
+  color: var(--fg-color);
   line-height: 1;
   padding: 0;
   transition: color 0.2s;
@@ -1107,7 +1105,7 @@ input:checked + .slider:before {
 }
 
 .detail-label {
-  color: #888;
+  color: var(--fg-color);
   font-size: 12px;
   font-weight: 500;
   min-width: 80px;
@@ -1127,13 +1125,13 @@ input:checked + .slider:before {
 
 .detail-value.fact-text {
   line-height: 1.5;
-  color: #444;
+  color: var(--fg-color);
 }
 
 .detail-section {
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px solid #F0F0F0;
+  border-top: 1px solid var(--glass-border);
 }
 
 .section-title {
@@ -1155,7 +1153,7 @@ input:checked + .slider:before {
 }
 
 .property-key {
-  color: #888;
+  color: var(--fg-color);
   font-weight: 500;
   min-width: 90px;
 }
@@ -1167,7 +1165,7 @@ input:checked + .slider:before {
 
 .summary-text {
   line-height: 1.6;
-  color: #444;
+  color: var(--fg-color);
   font-size: 12px;
 }
 
@@ -1182,10 +1180,10 @@ input:checked + .slider:before {
   padding: 4px 12px;
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid #E0E0E0;
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   font-size: 11px;
-  color: #555;
+  color: var(--fg-color);
 }
 
 .episodes-list {
@@ -1199,7 +1197,7 @@ input:checked + .slider:before {
   padding: 6px 10px;
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid #E8E8E8;
+  border: 1px solid var(--glass-border);
   border-radius: 6px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
@@ -1309,8 +1307,8 @@ input:checked + .slider:before {
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid #E0E0E0;
-  border-top-color: #7B2D8E;
+  border: 3px solid var(--glass-border);
+  border-top-color: var(--accent-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 16px;
@@ -1321,15 +1319,15 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
-  border: 1px solid #C8E6C9;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
 }
 
 .self-loop-count {
   margin-left: auto;
   font-size: 11px;
   color: var(--fg-color);
-  background: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.5);
   padding: 2px 8px;
   border-radius: 10px;
 }
@@ -1343,7 +1341,7 @@ input:checked + .slider:before {
 .self-loop-item {
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid #EAEAEA;
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
 }
 
@@ -1359,17 +1357,17 @@ input:checked + .slider:before {
 }
 
 .self-loop-item-header:hover {
-  background: #EEEEEE;
+  background: rgba(255,255,255,0.1);
 }
 
 .self-loop-item.expanded .self-loop-item-header {
-  background: #E8E8E8;
+  background: rgba(255,255,255,0.15);
 }
 
 .self-loop-index {
   font-size: 10px;
   font-weight: 600;
-  color: #888;
+  color: var(--fg-color);
   background: var(--glass-border);
   backdrop-filter: blur(10px);
   padding: 2px 6px;
@@ -1391,7 +1389,7 @@ input:checked + .slider:before {
   justify-content: center;
   font-size: 14px;
   font-weight: 600;
-  color: #888;
+  color: var(--fg-color);
   background: var(--glass-border);
   backdrop-filter: blur(10px);
   border-radius: 4px;
@@ -1399,13 +1397,13 @@ input:checked + .slider:before {
 }
 
 .self-loop-item.expanded .self-loop-toggle {
-  background: #D0D0D0;
+  background: rgba(255,255,255,0.2);
   color: var(--fg-color);
 }
 
 .self-loop-item-content {
   padding: 12px;
-  border-top: 1px solid #EAEAEA;
+  border-top: 1px solid var(--glass-border);
 }
 
 .self-loop-item-content .detail-row {
