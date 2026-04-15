@@ -7,6 +7,10 @@ import os
 from pathlib import Path
 from typing import List, Optional
 
+from .logger import get_logger
+
+logger = get_logger(__name__)
+
 
 def _read_text_with_fallback(file_path: str) -> str:
     """
@@ -40,7 +44,7 @@ def _read_text_with_fallback(file_path: str) -> str:
         if best and best.encoding:
             encoding = best.encoding
     except Exception:
-        pass
+        logger.debug("charset_normalizer failed to detect encoding", exc_info=True)
     
     # 回退到 chardet
     if not encoding:
@@ -49,7 +53,7 @@ def _read_text_with_fallback(file_path: str) -> str:
             result = chardet.detect(data)
             encoding = result.get('encoding') if result else None
         except Exception:
-            pass
+            logger.debug("chardet failed to detect encoding", exc_info=True)
     
     # 最终兜底：使用 UTF-8 + replace
     if not encoding:
