@@ -1,4 +1,4 @@
-import service, { requestWithRetry } from './index'
+import service, { requestWithRetry } from './index.js'
 
 /**
  * 生成本体（上传文档和模拟需求）
