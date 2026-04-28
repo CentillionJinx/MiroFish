@@ -12,6 +12,7 @@ from . import report_bp
 from ..config import Config
 from ..services.report_agent import ReportAgent, ReportManager, ReportStatus
 from ..services.simulation_manager import SimulationManager
+from ..utils.security import is_safe_id
 from ..models.project import ProjectManager
 from ..models.task import TaskManager, TaskStatus
 from ..utils.logger import get_logger
@@ -55,6 +56,12 @@ def generate_report():
             return jsonify({
                 "success": False,
                 "error": t('api.requireSimulationId')
+            }), 400
+
+        if not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
             }), 400
 
         force_regenerate = data.get('force_regenerate', False)
@@ -228,6 +235,12 @@ def get_generate_status():
         task_id = data.get('task_id')
         simulation_id = data.get('simulation_id')
         
+        if simulation_id and not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
+
         # 如果提供了simulation_id，先检查是否已有完成的报告
         if simulation_id:
             existing_report = ReportManager.get_report_by_simulation(simulation_id)
@@ -293,6 +306,11 @@ def get_report(report_id: str):
             }
         }
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         report = ReportManager.get_report(report_id)
         
@@ -330,6 +348,11 @@ def get_report_by_simulation(simulation_id: str):
             }
         }
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         report = ReportManager.get_report_by_simulation(simulation_id)
         
@@ -402,6 +425,11 @@ def download_report(report_id: str):
     
     返回Markdown文件
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         report = ReportManager.get_report(report_id)
         
@@ -444,6 +472,11 @@ def download_report(report_id: str):
 @report_bp.route('/<report_id>', methods=['DELETE'])
 def delete_report(report_id: str):
     """删除报告"""
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         success = ReportManager.delete_report(report_id)
         
@@ -500,6 +533,12 @@ def chat_with_report_agent():
         data = request.get_json() or {}
         
         simulation_id = data.get('simulation_id')
+        if simulation_id and not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
+
         message = data.get('message')
         chat_history = data.get('chat_history', [])
         
@@ -584,6 +623,11 @@ def get_report_progress(report_id: str):
             }
         }
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         progress = ReportManager.get_progress(report_id)
         
@@ -632,6 +676,11 @@ def get_report_sections(report_id: str):
             }
         }
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         sections = ReportManager.get_generated_sections(report_id)
         
@@ -672,6 +721,11 @@ def get_single_section(report_id: str, section_index: int):
             }
         }
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         section_path = ReportManager._get_section_path(report_id, section_index)
         
@@ -723,6 +777,11 @@ def check_report_status(simulation_id: str):
             }
         }
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         report = ReportManager.get_report_by_simulation(simulation_id)
         
@@ -795,6 +854,11 @@ def get_agent_log(report_id: str):
             }
         }
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         from_line = request.args.get('from_line', 0, type=int)
         
@@ -828,6 +892,11 @@ def stream_agent_log(report_id: str):
             }
         }
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         logs = ReportManager.get_agent_log_stream(report_id)
         
@@ -877,6 +946,11 @@ def get_console_log(report_id: str):
             }
         }
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         from_line = request.args.get('from_line', 0, type=int)
         
@@ -910,6 +984,11 @@ def stream_console_log(report_id: str):
             }
         }
     """
+    if not is_safe_id(report_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid report_id"
+        }), 400
     try:
         logs = ReportManager.get_console_log_stream(report_id)
         

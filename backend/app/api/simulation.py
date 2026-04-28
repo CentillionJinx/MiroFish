@@ -15,6 +15,7 @@ from ..services.simulation_manager import SimulationManager, SimulationStatus
 from ..services.simulation_runner import SimulationRunner, RunnerStatus
 from ..utils.logger import get_logger
 from ..utils.locale import t, get_locale, set_locale
+from ..utils.security import is_safe_id
 from ..models.project import ProjectManager
 
 logger = get_logger('mirofish.api.simulation')
@@ -56,6 +57,11 @@ def get_graph_entities(graph_id: str):
         entity_types: 逗号分隔的实体类型列表（可选，用于进一步过滤）
         enrich: 是否获取相关边信息（默认true）
     """
+    if not is_safe_id(graph_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid graph_id"
+        }), 400
     try:
         if not Config.ZEP_API_KEY:
             return jsonify({
@@ -93,6 +99,16 @@ def get_graph_entities(graph_id: str):
 @simulation_bp.route('/entities/<graph_id>/<entity_uuid>', methods=['GET'])
 def get_entity_detail(graph_id: str, entity_uuid: str):
     """获取单个实体的详细信息"""
+    if not is_safe_id(graph_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid graph_id"
+        }), 400
+    if not is_safe_id(entity_uuid):
+        return jsonify({
+            "success": False,
+            "error": "Invalid entity_uuid"
+        }), 400
     try:
         if not Config.ZEP_API_KEY:
             return jsonify({
@@ -126,6 +142,11 @@ def get_entity_detail(graph_id: str, entity_uuid: str):
 @simulation_bp.route('/entities/<graph_id>/by-type/<entity_type>', methods=['GET'])
 def get_entities_by_type(graph_id: str, entity_type: str):
     """获取指定类型的所有实体"""
+    if not is_safe_id(graph_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid graph_id"
+        }), 400
     try:
         if not Config.ZEP_API_KEY:
             return jsonify({
@@ -201,6 +222,12 @@ def create_simulation():
                 "error": t('api.requireProjectId')
             }), 400
         
+        if not is_safe_id(project_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid project_id"
+            }), 400
+
         project = ProjectManager.get_project(project_id)
         if not project:
             return jsonify({
@@ -215,6 +242,12 @@ def create_simulation():
                 "error": t('api.graphNotBuilt')
             }), 400
         
+        if not is_safe_id(graph_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid graph_id"
+            }), 400
+
         manager = SimulationManager()
         state = manager.create_simulation(
             project_id=project_id,
@@ -412,6 +445,12 @@ def prepare_simulation():
                 "error": t('api.requireSimulationId')
             }), 400
         
+        if not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
+
         manager = SimulationManager()
         state = manager.get_simulation(simulation_id)
         
@@ -755,6 +794,11 @@ def get_prepare_status():
 @simulation_bp.route('/<simulation_id>', methods=['GET'])
 def get_simulation(simulation_id: str):
     """获取模拟状态"""
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         manager = SimulationManager()
         state = manager.get_simulation(simulation_id)
@@ -795,6 +839,11 @@ def list_simulations():
     """
     try:
         project_id = request.args.get('project_id')
+        if project_id and not is_safe_id(project_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid project_id"
+            }), 400
         
         manager = SimulationManager()
         simulations = manager.list_simulations(project_id=project_id)
@@ -993,8 +1042,13 @@ def get_simulation_profiles(simulation_id: str):
     获取模拟的Agent Profile
     
     Query参数：
-        platform: 平台类型（reddit/twitter，默认reddit）
+        platform: platform 类型（reddit/twitter，默认reddit）
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         platform = request.args.get('platform', 'reddit')
         
@@ -1053,6 +1107,11 @@ def get_simulation_profiles_realtime(simulation_id: str):
             }
         }
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     import json
     import csv
     from datetime import datetime
@@ -1159,6 +1218,11 @@ def get_simulation_config_realtime(simulation_id: str):
             }
         }
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     import json
     from datetime import datetime
     
@@ -1267,6 +1331,11 @@ def get_simulation_config(simulation_id: str):
         - platform_configs: 平台配置
         - generation_reasoning: LLM的配置推理说明
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         manager = SimulationManager()
         config = manager.get_simulation_config(simulation_id)
@@ -1294,6 +1363,11 @@ def get_simulation_config(simulation_id: str):
 @simulation_bp.route('/<simulation_id>/config/download', methods=['GET'])
 def download_simulation_config(simulation_id: str):
     """下载模拟配置文件"""
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         manager = SimulationManager()
         sim_dir = manager._get_simulation_dir(simulation_id)
@@ -1331,6 +1405,11 @@ def download_simulation_script(script_name: str):
         - run_parallel_simulation.py
         - action_logger.py
     """
+    if not is_safe_id(script_name.replace('.', '_')):
+        return jsonify({
+            "success": False,
+            "error": "Invalid script_name"
+        }), 400
     try:
         # 脚本位于 backend/scripts/ 目录
         scripts_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../scripts'))
@@ -1397,6 +1476,12 @@ def generate_profiles():
                 "error": t('api.requireGraphId')
             }), 400
         
+        if not is_safe_id(graph_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid graph_id"
+            }), 400
+
         entity_types = data.get('entity_types')
         use_llm = data.get('use_llm', True)
         platform = data.get('platform', 'reddit')
@@ -1728,6 +1813,11 @@ def get_run_status(simulation_id: str):
             }
         }
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         run_state = SimulationRunner.get_run_state(simulation_id)
         
@@ -1797,6 +1887,11 @@ def get_run_status_detail(simulation_id: str):
             }
         }
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         run_state = SimulationRunner.get_run_state(simulation_id)
         platform_filter = request.args.get('platform')
@@ -1882,6 +1977,11 @@ def get_simulation_actions(simulation_id: str):
             }
         }
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         limit = request.args.get('limit', 100, type=int)
         offset = request.args.get('offset', 0, type=int)
@@ -1928,6 +2028,11 @@ def get_simulation_timeline(simulation_id: str):
     
     返回每轮的汇总信息
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         start_round = request.args.get('start_round', 0, type=int)
         end_round = request.args.get('end_round', type=int)
@@ -1962,6 +2067,11 @@ def get_agent_stats(simulation_id: str):
     
     用于前端展示Agent活跃度排行、动作分布等
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         stats = SimulationRunner.get_agent_stats(simulation_id)
         
@@ -1996,6 +2106,11 @@ def get_simulation_posts(simulation_id: str):
     
     返回帖子列表（从SQLite数据库读取）
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         platform = request.args.get('platform', 'reddit')
         limit = request.args.get('limit', 50, type=int)
@@ -2072,6 +2187,11 @@ def get_simulation_comments(simulation_id: str):
         limit: 返回数量
         offset: 偏移量
     """
+    if not is_safe_id(simulation_id):
+        return jsonify({
+            "success": False,
+            "error": "Invalid simulation_id"
+        }), 400
     try:
         post_id = request.args.get('post_id')
         limit = request.args.get('limit', 50, type=int)
@@ -2194,6 +2314,12 @@ def interview_agent():
         data = request.get_json() or {}
         
         simulation_id = data.get('simulation_id')
+        if simulation_id and not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
+
         agent_id = data.get('agent_id')
         prompt = data.get('prompt')
         platform = data.get('platform')  # 可选：twitter/reddit/None
@@ -2316,6 +2442,12 @@ def interview_agents_batch():
         data = request.get_json() or {}
 
         simulation_id = data.get('simulation_id')
+        if simulation_id and not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
+
         interviews = data.get('interviews')
         platform = data.get('platform')  # 可选：twitter/reddit/None
         timeout = data.get('timeout', 120)
@@ -2443,6 +2575,12 @@ def interview_all_agents():
         data = request.get_json() or {}
 
         simulation_id = data.get('simulation_id')
+        if simulation_id and not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
+
         prompt = data.get('prompt')
         platform = data.get('platform')  # 可选：twitter/reddit/None
         timeout = data.get('timeout', 180)
@@ -2547,6 +2685,12 @@ def get_interview_history():
         data = request.get_json() or {}
         
         simulation_id = data.get('simulation_id')
+        if simulation_id and not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
+
         platform = data.get('platform')  # 不指定则返回两个平台的历史
         agent_id = data.get('agent_id')
         limit = data.get('limit', 100)
@@ -2609,6 +2753,11 @@ def get_env_status():
         data = request.get_json() or {}
         
         simulation_id = data.get('simulation_id')
+        if simulation_id and not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
         
         if not simulation_id:
             return jsonify({
@@ -2676,6 +2825,12 @@ def close_simulation_env():
         data = request.get_json() or {}
         
         simulation_id = data.get('simulation_id')
+        if simulation_id and not is_safe_id(simulation_id):
+            return jsonify({
+                "success": False,
+                "error": "Invalid simulation_id"
+            }), 400
+
         timeout = data.get('timeout', 30)
         
         if not simulation_id:
