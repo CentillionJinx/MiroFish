@@ -1034,6 +1034,12 @@ class ZepToolsService:
                 if target_uuid:
                     entity_uuids.add(target_uuid)
         
+        # 优化：批量获取所有节点，避免 N+1 查询
+        all_nodes_map = {}
+        if entity_uuids:
+            all_graph_nodes = self.get_all_nodes(graph_id)
+            all_nodes_map = {node.uuid: node for node in all_graph_nodes}
+
         # 获取所有相关实体的详情（不限制数量，完整输出）
         entity_insights = []
         node_map = {}  # 用于后续关系链构建
@@ -1042,8 +1048,8 @@ class ZepToolsService:
             if not uuid:
                 continue
             try:
-                # 单独获取每个相关节点的信息
-                node = self.get_node_detail(uuid)
+                # 从预加载的 map 中获取节点信息
+                node = all_nodes_map.get(uuid)
                 if node:
                     node_map[uuid] = node
                     entity_type = next((l for l in node.labels if l not in ["Entity", "Node"]), "实体")
@@ -1062,7 +1068,7 @@ class ZepToolsService:
                         "related_facts": related_facts  # 完整输出，不截断
                     })
             except Exception as e:
-                logger.debug(f"获取节点 {uuid} 失败: {e}")
+                logger.debug(f"处理节点 {uuid} 失败: {e}")
                 continue
         
         result.entity_insights = entity_insights
