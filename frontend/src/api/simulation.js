@@ -1,4 +1,4 @@
-import service, { requestWithRetry } from './index'
+import service, { requestWithRetry } from './index.js'
 
 /**
  * 创建模拟
