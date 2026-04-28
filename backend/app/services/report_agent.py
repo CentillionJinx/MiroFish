@@ -21,6 +21,7 @@ from enum import Enum
 from ..config import Config
 from ..utils.llm_client import LLMClient
 from ..utils.logger import get_logger
+from ..utils.security import is_safe_id
 from ..utils.locale import get_language_instruction, t
 from .zep_tools import (
     ZepToolsService, 
@@ -1910,6 +1911,8 @@ class ReportManager:
     @classmethod
     def _get_report_folder(cls, report_id: str) -> str:
         """获取报告文件夹路径"""
+        if not is_safe_id(report_id):
+            raise ValueError(f"Invalid report_id: {report_id}")
         return os.path.join(cls.REPORTS_DIR, report_id)
     
     @classmethod
